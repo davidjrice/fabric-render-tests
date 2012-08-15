@@ -1,0 +1,7 @@
+# Paths
+src_dir: "../js/"
+spec_dir: "../spec/"
+
+spec_files:
+  - "1.spec.js"
+  - "10.spec.js"

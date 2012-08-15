@@ -1,0 +1,23 @@
+{
+  "name": "fabric-render-tests",
+  "description": "fabric.js SVG rendering tests",
+  "version": "0.0.1",
+  "author": "David Rice <drice@rumblelabs.com>",
+  "repository": "git://github.com/rumblelabs/fabric-render-tests",
+  "private": true,
+  "scripts": {
+    "test": "jasmine-node ."
+  },
+  "dependencies": {
+    "fabric": "git://github.com/davidjrice/fabric.js.git",
+    "imagediff": "git://github.com/davidjrice/js-imagediff.git#node-canvas-update-and-test-fixes",
+    "canvas": "0.13.0"
+  },
+  "devDependencies": {
+    "jasmine-node": ">=1.0.20"
+  },
+  "engines": { 
+    "node": "0.8.6",
+    "npm": "1.1.41"
+  }
+}
