@@ -24,7 +24,7 @@ function testSVG(id){
   b.src = 'png/'+id+'.png';
   
 
-  waits(300);
+  waits(600);
   waitsFor(function(){
     return a.complete && b.complete
   }, 2000)
