@@ -1,5 +1,5 @@
 var page = require('webpage').create(),
-    address, output, size;
+    address, output, size, width, height;
 
 if (phantom.args.length < 2 || phantom.args.length > 3) {
     console.log('Usage: rasterize.js URL filename');
@@ -7,7 +7,10 @@ if (phantom.args.length < 2 || phantom.args.length > 3) {
 } else {
     address = phantom.args[0];
     output = phantom.args[1];
-    page.viewportSize = { width: 320, height: 200 };
+    width = phantom.args[2];
+    height = phantom.args[3];
+    
+    page.viewportSize = { width: width, height: height };
     page.open(address, function (status) {
         if (status !== 'success') {
             console.log('Unable to load the address!');

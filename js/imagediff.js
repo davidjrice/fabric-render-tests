@@ -158,6 +158,58 @@
     return true;
   }
 
+  function equalWithTotalTolerance(a, b, tolerance){
+
+    var
+      aData     = a.data,
+      bData     = b.data,
+      length    = aData.length,
+      i;
+
+    tolerance = tolerance || 0;
+
+    var differing = 0;
+
+    if (!equalDimensions(a, b)) return false;
+    for (i = length; i--;){
+      if (aData[i] !== bData[i]){
+        differing = differing+1;
+      }
+    }
+
+    var percentage = (differing/length)*100;
+
+    console.log(percentage);
+
+    if(percentage >= tolerance){
+      return false
+    } else {
+      return true;
+    }
+  }
+
+  function diffTolerance(a, b){
+
+    var
+      aData     = a.data,
+      bData     = b.data,
+      length    = aData.length,
+      i;
+
+    var differing = 0;
+
+    if (!equalDimensions(a, b)) return false;
+    for (i = length; i--;){
+      if (aData[i] !== bData[i]){
+        differing = differing+1;
+      }
+    }
+
+    var percentage = (differing/length)*100;
+
+    return percentage.toFixed(2);
+  }
+
 
   // Diff
   function diff (a, b) {
@@ -277,6 +329,7 @@
             a       = get('div', '<div>Actual:</div>'),
             b       = get('div', '<div>Expected:</div>'),
             c       = get('div', '<div>Diff:</div>'),
+            // d       = get('div', '<div>Tolerance:</div>'),
             diff    = imagediff.diff(this.actual, expected),
             canvas  = getCanvas(),
             context;
@@ -288,6 +341,7 @@
           a.style.float = 'left';
           b.style.float = 'left';
           c.style.float = 'left';
+          // d.style.float = 'left';
 
           context = canvas.getContext('2d');
           context.putImageData(diff, 0, 0);
@@ -296,9 +350,13 @@
           b.appendChild(toCanvas(expected));
           c.appendChild(canvas);
 
+          var p = get('p', "Diff: "+imagediff.diffTolerance(this.actual, expected)+"%");
+          c.appendChild(p);
+
           div.appendChild(a);
           div.appendChild(b);
           div.appendChild(c);
+          // div.appendChild(d);
 
           return [
             div,
@@ -307,7 +365,7 @@
         };
       }
 
-      return imagediff.equal(this.actual, expected, tolerance);
+      return imagediff.equalWithTotalTolerance(this.actual, expected, tolerance);
     }
   };
 
@@ -352,6 +410,21 @@
       b = toImageData(b);
       return equal(a, b, tolerance);
     },
+
+    equalWithTotalTolerance : function (a, b, tolerance) {
+      checkType(a, b);
+      a = toImageData(a);
+      b = toImageData(b);
+      return equalWithTotalTolerance(a, b, tolerance);
+    },
+
+    diffTolerance : function(a, b){
+      checkType(a, b);
+      a = toImageData(a);
+      b = toImageData(b);
+      return diffTolerance(a, b);
+    },
+
     diff : function (a, b) {
       checkType(a, b);
       a = toImageData(a);

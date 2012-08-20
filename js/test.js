@@ -27,7 +27,7 @@ describe('ImageTest', function() {
       data = canvas.toDataURL('png');
 
       a.src = data;
-      b.src = 'images/inkscape.10a.png';
+      b.src = 'png/10.png';
 
     })
     
@@ -37,8 +37,10 @@ describe('ImageTest', function() {
     }, 'image not loaded.', 2000);
 
     runs(function () {
-      console.log(a)
-      expect(a).toImageDiffEqual(b);
+      setTimeout(function(){
+        console.log(a)
+        expect(a).toImageDiffEqual(b);
+      }, 2000)
     });
   });
 
@@ -50,7 +52,7 @@ describe('ImageTest', function() {
       a = new Image(),
       b = new Image();
     a.src = 'images/fabric.10.png';
-    b.src = 'images/inkscape.10a.png';
+    b.src = 'png/10.png';
 
     waitsFor(function () {
       return a.complete & b.complete;
@@ -68,7 +70,7 @@ describe('ImageTest', function() {
       a = new Image(),
       b = new Image();
     a.src = 'images/fabric.1.png';
-    b.src = 'images/illustrator.1.png';
+    b.src = 'png/1.png';
 
     waitsFor(function () {
       return a.complete & b.complete;
@@ -85,7 +87,7 @@ describe('ImageTest', function() {
       a = new Image(),
       b = new Image();
     a.src = 'images/fabric.1.png';
-    b.src = 'images/inkscape.1b.png';
+    b.src = 'png/1.png';
 
     waitsFor(function () {
       return a.complete & b.complete;
@@ -102,7 +104,7 @@ describe('ImageTest', function() {
       a = new Image(),
       b = new Image();
     a.src = 'images/fabric.69.png';
-    b.src = 'images/inkscape.69a.png';
+    b.src = 'png/69.png';
 
     waitsFor(function () {
       return a.complete & b.complete;
@@ -119,7 +121,7 @@ describe('ImageTest', function() {
       a = new Image(),
       b = new Image();
     a.src = 'images/fabric.69.png';
-    b.src = 'images/webkit.69.png';
+    b.src = 'png/69.png';
 
     waitsFor(function () {
       return a.complete & b.complete;
@@ -136,7 +138,7 @@ describe('ImageTest', function() {
       a = new Image(),
       b = new Image();
     a.src = 'images/fabric.20.png';
-    b.src = 'images/inkscape.20a.png';
+    b.src = 'png/20.png';
 
     waitsFor(function () {
       return a.complete & b.complete;
