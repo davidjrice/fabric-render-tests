@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JS-ImageDiff Jasmine Demo</title>
+
+  <meta name="description" content="Unit testing Canvas with js-imagediff JavaScript image diff utility and Jasmine." />
+
+  <link rel="shortcut icon" type="image/png" href="js/jasmine/jasmine_favicon.png">
+  <link rel="stylesheet" type="text/css" href="lib/jasmine/jasmine.css">
+  <link rel="stylesheet" href="css/styles.css" type="text/css" />
+  <link rel="stylesheet" href="js/google-code-prettify/prettify.css" type="text/css" />
+
+  <script type="text/javascript" src="lib/jasmine/jasmine.js"></script>
+  <script type="text/javascript" src="lib/jasmine/jasmine-html.js"></script>
+  <script type="text/javascript" src="js/fabric.1.0.1.js"></script>
+  <script type="text/javascript" src="js/imagediff.js"></script>
+  <script type="text/javascript" src="js/fabric-canvas-test.js"></script>
+  <script type="text/javascript" src="js/google-code-prettify/prettify.js"></script>
+
+
+</head>
+
+<body>
+  <h1>fabric.js (1.0.1) rendering tests</h1>
+  <p><strong>Expected</strong> images were pre-rasterized under WebKit using phantom.js</p>
+  <p><strong>Actual</strong> images are rendered and then export as PNG data from fabric</p>
+  <p>Images are then compared using js-imagediff and fail if they are above a tolerance of 1% different</p>
+  <!-- <canvas id="canvas-18"></canvas> -->
+  
+  <script type="text/javascript">
+  (function() {
+   prettyPrint();
+    var jasmineEnv = jasmine.getEnv();
+    jasmineEnv.updateInterval = 1000;
+
+    var reporter = new jasmine.HtmlReporter();
+
+    jasmineEnv.addReporter(reporter);
+
+    jasmineEnv.specFilter = function(spec) {
+      return reporter.specFilter(spec);
+    };
+
+    var currentWindowOnload = window.onload;
+
+    window.onload = function() {
+      if (currentWindowOnload) {
+        currentWindowOnload();
+      }
+      execJasmine();
+    };
+
+    function execJasmine() {
+      jasmineEnv.execute();
+    }
+
+  })();
+  </script>
+</body>
+</html>
